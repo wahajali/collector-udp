@@ -14,13 +14,13 @@ module Udp
         http = ConnectionPool.instance.get_connection.post body: body, keepalive: true, headers: {"Content-type" => "application/json"}
 
         http.errback do
-          Config.logger.warn('http.response.failed to kairos: ' + http.error)
+          ::Collector::Config.logger.warn('http.response.failed to kairos: ' + http.error)
         end
 
 =begin
         http.callback do
           #NOTE: do nothing. why waste time logging success?
-          Config.logger.warn('http.response.success' + http.error)
+          ::Collector::Config.logger.warn('http.response.success' + http.error)
         end
 =end
       end

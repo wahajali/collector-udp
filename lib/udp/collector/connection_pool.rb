@@ -14,11 +14,11 @@ module Udp
       private
 
       def initialize
-        @@pool_size = Config.connection_pool
+        @@pool_size = ::Collector::Config.connection_pool
         @@connections = Array.new
         @@index = 0
         (0..@@pool_size - 1).each do |i|
-          @@connections.push EventMachine::HttpRequest.new(Config.kairos_host)
+          @@connections.push EventMachine::HttpRequest.new(::Collector::Config.kairos_host)
         end
       end
     end
