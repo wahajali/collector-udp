@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+$:.unshift(File.expand_path("../lib", File.dirname(__FILE__)))
+
+require "rubygems"
+require "bundler/setup"
+require "udp/collector"
+require "udp/collector/config"
+require "yaml"
+require "logger"
+
+config_file = ENV["CONFIG_FILE"] || File.expand_path("../config/config.yml", File.dirname(__FILE__))
+Collector::Config.configure(YAML.load_file(config_file))
+
+Udp::Collector::UDPCollector.new.start

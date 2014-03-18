@@ -1,0 +1,7 @@
+---
+logging:
+  level: info
+  file: logs/collector.logs
+kairos_host: <kairos-url>
+port: 9000
+connection_pool: 5
