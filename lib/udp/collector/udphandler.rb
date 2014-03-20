@@ -6,9 +6,11 @@ module Udp
       def receive_data(data)
         data = MessagePack.unpack(data)
 
+=begin
         File.open('logs/data.logs', 'a') do |file| 
           file.write(data.to_s + "\n") 
         end
+=end
 
         body = Yajl::Encoder.encode(process_data(data))
         http = ConnectionPool.instance.get_connection.post body: body, keepalive: true, headers: {"Content-type" => "application/json"}
